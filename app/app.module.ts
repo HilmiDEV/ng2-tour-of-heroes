@@ -11,7 +11,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
+import {HeroesComponent} from './heroes.component';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroService} from './hero.service';
+
+// Import the routing constant that contain the configured router module.
+import {routing} from './app.routing';
 
 /* The entry point to the application
     The imports array contain the modules that our module depends
@@ -19,15 +24,18 @@ import {HeroDetailComponent} from './hero-detail.component';
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        routing
     ],
     /* the declarations array contains the list of all components, pipes, and directives
             that we created and that belong in our application's module.
      */
     declarations : [
         AppComponent,
-        HeroDetailComponent
+        HeroDetailComponent,
+        HeroesComponent
     ],
+    providers : [HeroService],
     bootstrap : [AppComponent]
 })
 export class AppModule {

@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
 import {OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector : "heroes",
@@ -16,7 +17,9 @@ export class HeroesComponent implements OnInit {
 
     heroes : Hero[];
 
-    constructor(private heroService : HeroService){
+    constructor(
+        private heroService : HeroService,
+        private route : Router){
         /* The constructor is for simple initializations like wiring constructor parameters to properties.
                 It's not for heavy lifting so for the heavy jobs we can use the Lifecycle Hooks.
          */
@@ -31,6 +34,10 @@ export class HeroesComponent implements OnInit {
      */
     ngOnInit() : void  {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+    gotoDetail() : void {
+        let link =['/detail',this.selectedHero.id];
+        this.route.navigate(link);
     }
 
 }

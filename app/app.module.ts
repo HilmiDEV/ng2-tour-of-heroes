@@ -14,6 +14,7 @@ import {AppComponent} from './app.component';
 import {HeroesComponent} from './heroes.component';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import {DashboardComponent} from './dashboard.component';
 
 // Import the routing constant that contain the configured router module.
 import {routing} from './app.routing';
@@ -33,7 +34,8 @@ import {routing} from './app.routing';
     declarations : [
         AppComponent,
         HeroDetailComponent,
-        HeroesComponent
+        HeroesComponent,
+        DashboardComponent
     ],
     providers : [HeroService],
     bootstrap : [AppComponent]

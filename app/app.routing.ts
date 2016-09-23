@@ -8,13 +8,31 @@ import {Routes, RouterModule} from '@angular/router';
 
 // Import the components that used for each rout
 import {HeroesComponent} from './heroes.component';
+import {DashboardComponent} from './dashboard.component';
+import {HeroDetailComponent} from './hero-detail.component';
 
+/*
+    Array contain the routes definitions.
+ */
 const appRoutes : Routes = [
     {
         path : 'heroes',
         component : HeroesComponent
+    },
+    {
+        path : 'dashboard',
+        component : DashboardComponent
+    },
+    {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+    },
+    {
+        path : 'detail/:id',
+        component : HeroDetailComponent
     }
-    ];
+];
 
 /*
  We'll export a routing constant initialized using the RouterModule.forRoot method applied to our array of routes.

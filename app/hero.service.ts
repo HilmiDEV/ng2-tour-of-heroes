@@ -1,12 +1,22 @@
 import {Injectable} from '@angular/core';
-import {HEROES} from './mock-heroes';
 import {Hero} from './hero';
+// Import the Http Service from Angular Http library
+import {Headers, Http} from "@angular/http";
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class HeroService {
 
+    private heroesUrl = 'app/heroes'; // Url to Web API
+
+    constructor(private http : Http){}
+
     getHeroes() : Promise<Hero[]> {
-        return Promise.resolve(HEROES);
+
+        return this.http.get(this.heroesUrl)
+            .toPromise()
+            // Convert the response to Hero[]
+            .then(response => response.json().data as Hero[]);
     }
 
     getHeroesSlowly(): Promise<Hero[]> {

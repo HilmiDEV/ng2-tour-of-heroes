@@ -40,4 +40,30 @@ export class HeroesComponent implements OnInit {
         this.route.navigate(link);
     }
 
+    /*
+     When the given name is non-blank,
+        the handler delegates creation of the named hero to the hero service,
+            and then adds the new hero to our array.
+     */
+    add(name: string): void {
+        name = name.trim();
+        if (!name) { return; }
+        this.heroService.create(name)
+            .then(hero => {
+                this.heroes.push(hero);
+                this.selectedHero = null;
+            });
+    }
+
+    delete(hero: Hero): void {
+        this.heroService
+            .delete(hero.id)
+            .then(() => {
+                this.heroes = this.heroes.filter(h => h !== hero);
+                if (this.selectedHero === hero) { this.selectedHero = null; }
+            });
+    }
+
+
+
 }
